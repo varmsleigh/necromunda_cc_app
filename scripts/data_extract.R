@@ -8,7 +8,7 @@ text <- strsplit(pdf_text("resources/Necromunda_Underhive_2017_rules_en.pdf"), s
   d_fighters <- data.table(gang = character(),type = character(),
                            mv= integer(),ws=integer(),bs=integer(),
                            str=integer(),tgh=integer(),wnd=integer(),ini=integer(),
-                           att=integer(),ld=integer(),cl=integer(),wil=integer(),int=integer())
+                           att=integer(),ld=integer(),cl=integer(),wil=integer(),int=integer(), prim=list(), sec=list())
   
   ## Cawdor
   gng <- 'cawdor'
@@ -17,22 +17,22 @@ text <- strsplit(pdf_text("resources/Necromunda_Underhive_2017_rules_en.pdf"), s
   line <- grep('Leader\\.\\.',text[[page]])+2
   ins <- unlist(strsplit(gsub("\\+","",gsub("’","",text[[page]][line]))," "))
   ins <- as.vector(ins[ins != ''])
-  d_fighters <- rbind(d_fighters,c(list(gng,'leader'), ins))
+  d_fighters <- rbind(d_fighters,c(list(gng,'leader'), ins,list('Brawn, Leadership, Combat'),list('Ferocity, Savant')))
   
   line <- grep('Champions\\.\\.',text[[page]])+2
   ins <- unlist(strsplit(gsub("\\+","",gsub("’","",text[[page]][line]))," "))
   ins <- as.vector(ins[ins != ''])
-  d_fighters <- rbind(d_fighters,c(list(gng,'champion'), ins))
+  d_fighters <- rbind(d_fighters,c(list(gng,'champion'), ins,list('Brawn, Combat'),list('Leadership, Ferocity, Agility')))
   
   line <- grep('Juves\\.\\.',text[[page]])+2
   ins <- unlist(strsplit(gsub("\\+","",gsub("’","",text[[page]][line]))," "))
   ins <- ins[ins != '']
-  d_fighters <- rbind(d_fighters,c(list(gng,'juve'), ins))
+  d_fighters <- rbind(d_fighters,c(list(gng,'juve'), ins,list('Ferocity'),list('Combat, Agility')))
   
   line <- grep('Gangers\\.\\.',text[[page]])+2
   ins <- unlist(strsplit(gsub("\\+","",gsub("’","",text[[page]][line]))," "))
   ins <- ins[ins != '']
-  d_fighters <- rbind(d_fighters,c(list(gng,'ganger'), ins))
+  d_fighters <- rbind(d_fighters,c(list(gng,'ganger'), ins,list('Ferocity, Combat'),list('Brawn, Agility')))
   
   ## Delaque
   gng <- 'delaque'
@@ -41,22 +41,22 @@ text <- strsplit(pdf_text("resources/Necromunda_Underhive_2017_rules_en.pdf"), s
   line <- grep('Leader\\.\\.',text[[page]])+2
   ins <- unlist(strsplit(gsub("\\+","",gsub("’","",text[[page]][line]))," "))
   ins <- as.vector(ins[ins != ''])
-  d_fighters <- rbind(d_fighters,c(list(gng,'leader'), ins))
+  d_fighters <- rbind(d_fighters,c(list(gng,'leader'), ins,list('Leadership, Cunning, Agility'),list('Shooting, Savant')))
   
   line <- grep('Champions\\.\\.',text[[page]])+2
   ins <- unlist(strsplit(gsub("\\+","",gsub("’","",text[[page]][line]))," "))
   ins <- as.vector(ins[ins != ''])
-  d_fighters <- rbind(d_fighters,c(list(gng,'champion'), ins))
+  d_fighters <- rbind(d_fighters,c(list(gng,'champion'), ins,list('Cunning, Shooting'),list('Leadership, Savant, Agility')))
   
   line <- grep('Juves\\.\\.',text[[page]])+2
   ins <- unlist(strsplit(gsub("\\+","",gsub("’","",text[[page]][line]))," "))
   ins <- ins[ins != '']
-  d_fighters <- rbind(d_fighters,c(list(gng,'juve'), ins))
+  d_fighters <- rbind(d_fighters,c(list(gng,'juve'), ins,list('Cunning'),list('Shooting, Agility')))
   
   line <- grep('Gangers\\.\\.',text[[page]])+2
   ins <- unlist(strsplit(gsub("\\+","",gsub("’","",text[[page]][line]))," "))
   ins <- ins[ins != '']
-  d_fighters <- rbind(d_fighters,c(list(gng,'ganger'), ins))
+  d_fighters <- rbind(d_fighters,c(list(gng,'ganger'), ins,list('Cunning, Shooting'),list('Combat, Agility')))
   
   ## Escher
   gng <- 'escher'
@@ -65,22 +65,22 @@ text <- strsplit(pdf_text("resources/Necromunda_Underhive_2017_rules_en.pdf"), s
   line <- grep('Leader\\.\\.',text[[page]])+2
   ins <- unlist(strsplit(gsub("\\+","",gsub("’","",text[[page]][line]))," "))
   ins <- as.vector(ins[ins != ''])
-  d_fighters <- rbind(d_fighters,c(list(gng,'leader'), ins))
+  d_fighters <- rbind(d_fighters,c(list(gng,'leader'), ins,list('Leadership, Combat, Agility'),list('Cunning, Ferocity')))
   
   line <- grep('Champions\\.\\.',text[[page]])+2
   ins <- unlist(strsplit(gsub("\\+","",gsub("’","",text[[page]][line]))," "))
   ins <- as.vector(ins[ins != ''])
-  d_fighters <- rbind(d_fighters,c(list(gng,'champion'), ins))
+  d_fighters <- rbind(d_fighters,c(list(gng,'champion'), ins,list('Combat, Agility'),list('Cunning, Ferocity, Leadership')))
   
   line <- grep('Juves\\.\\.',text[[page]])+2
   ins <- unlist(strsplit(gsub("\\+","",gsub("’","",text[[page]][line]))," "))
   ins <- ins[ins != '']
-  d_fighters <- rbind(d_fighters,c(list(gng,'juve'), ins))
+  d_fighters <- rbind(d_fighters,c(list(gng,'juve'), ins,list('Agility'),list('Cunning, Combat')))
   
   line <- grep('Gangers\\.\\.',text[[page]])+2
   ins <- unlist(strsplit(gsub("\\+","",gsub("’","",text[[page]][line]))," "))
   ins <- ins[ins != '']
-  d_fighters <- rbind(d_fighters,c(list(gng,'ganger'), ins))
+  d_fighters <- rbind(d_fighters,c(list(gng,'ganger'), ins,list('Combat, Agility'),list('Cunning, Ferocity')))
   
   ## Goliath
   gng <- 'goliath'
@@ -89,22 +89,22 @@ text <- strsplit(pdf_text("resources/Necromunda_Underhive_2017_rules_en.pdf"), s
   line <- grep('Leader\\.\\.',text[[page]])+2
   ins <- unlist(strsplit(gsub("\\+","",gsub("’","",text[[page]][line]))," "))
   ins <- as.vector(ins[ins != ''])
-  d_fighters <- rbind(d_fighters,c(list(gng,'leader'), ins))
+  d_fighters <- rbind(d_fighters,c(list(gng,'leader'), ins,list('Leadership, Ferocity, Brawn'),list('Combat, Shooting')))
   
   line <- grep('Champions\\.\\.',text[[page]])+2
   ins <- unlist(strsplit(gsub("\\+","",gsub("’","",text[[page]][line]))," "))
   ins <- as.vector(ins[ins != ''])
-  d_fighters <- rbind(d_fighters,c(list(gng,'champion'), ins))
+  d_fighters <- rbind(d_fighters,c(list(gng,'champion'), ins,list('Ferocity, Brawn'),list('Leadership, Combat, Shooting')))
   
   line <- grep('Juves\\.\\.',text[[page]])+2
   ins <- unlist(strsplit(gsub("\\+","",gsub("’","",text[[page]][line]))," "))
   ins <- ins[ins != '']
-  d_fighters <- rbind(d_fighters,c(list(gng,'juve'), ins))
+  d_fighters <- rbind(d_fighters,c(list(gng,'juve'), ins,list('Ferocity'),list('Brawn, Agility')))
   
   line <- grep('Gangers\\.\\.',text[[page]])+2
   ins <- unlist(strsplit(gsub("\\+","",gsub("’","",text[[page]][line]))," "))
   ins <- ins[ins != '']
-  d_fighters <- rbind(d_fighters,c(list(gng,'ganger'), ins))
+  d_fighters <- rbind(d_fighters,c(list(gng,'ganger'), ins,list('Ferocity, Brawn'),list('Combat, Shooting')))
   
   ## Orlock
   gng <- 'orlock'
@@ -113,22 +113,22 @@ text <- strsplit(pdf_text("resources/Necromunda_Underhive_2017_rules_en.pdf"), s
   line <- grep('Leader\\.\\.',text[[page]])+2
   ins <- unlist(strsplit(gsub("\\+","",gsub("’","",text[[page]][line]))," "))
   ins <- as.vector(ins[ins != ''])
-  d_fighters <- rbind(d_fighters,c(list(gng,'leader'), ins))
+  d_fighters <- rbind(d_fighters,c(list(gng,'leader'), ins,list('Leadership, Ferocity, Savant'),list('Brawn, Shooting')))
   
   line <- grep('Champions\\.\\.',text[[page]])+2
   ins <- unlist(strsplit(gsub("\\+","",gsub("’","",text[[page]][line]))," "))
   ins <- as.vector(ins[ins != ''])
-  d_fighters <- rbind(d_fighters,c(list(gng,'champion'), ins))
+  d_fighters <- rbind(d_fighters,c(list(gng,'champion'), ins,list('Ferocity, Savant'),list('Leadership, Brawn, Shooting')))
   
   line <- grep('Juves\\.\\.',text[[page]])+2
   ins <- unlist(strsplit(gsub("\\+","",gsub("’","",text[[page]][line]))," "))
   ins <- ins[ins != '']
-  d_fighters <- rbind(d_fighters,c(list(gng,'juve'), ins))
+  d_fighters <- rbind(d_fighters,c(list(gng,'juve'), ins,list('Ferocity'),list('Savant, Shooting')))
   
   line <- grep('Gangers\\.\\.',text[[page]])+2
   ins <- unlist(strsplit(gsub("\\+","",gsub("’","",text[[page]][line]))," "))
   ins <- ins[ins != '']
-  d_fighters <- rbind(d_fighters,c(list(gng,'ganger'), ins))
+  d_fighters <- rbind(d_fighters,c(list(gng,'ganger'), ins,list('Ferocity, Savant'),list('Brawn, Shooting')))
   
   ## Van Saar
   gng <- 'vansaar'
@@ -137,22 +137,22 @@ text <- strsplit(pdf_text("resources/Necromunda_Underhive_2017_rules_en.pdf"), s
   line <- grep('Leader\\.\\.',text[[page]])+2
   ins <- unlist(strsplit(gsub("\\+","",gsub("’","",text[[page]][line]))," "))
   ins <- as.vector(ins[ins != ''])
-  d_fighters <- rbind(d_fighters,c(list(gng,'leader'), ins))
+  d_fighters <- rbind(d_fighters,c(list(gng,'leader'), ins,list('Leadership, Shooting, Savant'),list('Cunning, Agility')))
   
   line <- grep('Champions\\.\\.',text[[page]])+2
   ins <- unlist(strsplit(gsub("\\+","",gsub("’","",text[[page]][line]))," "))
   ins <- as.vector(ins[ins != ''])
-  d_fighters <- rbind(d_fighters,c(list(gng,'champion'), ins))
+  d_fighters <- rbind(d_fighters,c(list(gng,'champion'), ins,list('Shooting, Savant'),list('Leadership, Cunning, Combat')))
   
   line <- grep('Juves\\.\\.',text[[page]])+2
   ins <- unlist(strsplit(gsub("\\+","",gsub("’","",text[[page]][line]))," "))
   ins <- ins[ins != '']
-  d_fighters <- rbind(d_fighters,c(list(gng,'juve'), ins))
+  d_fighters <- rbind(d_fighters,c(list(gng,'juve'), ins,list('Agility'),list('Shooting, Savant')))
   
   line <- grep('Gangers\\.\\.',text[[page]])+2
   ins <- unlist(strsplit(gsub("\\+","",gsub("’","",text[[page]][line]))," "))
   ins <- ins[ins != '']
-  d_fighters <- rbind(d_fighters,c(list(gng,'ganger'), ins))
+  d_fighters <- rbind(d_fighters,c(list(gng,'ganger'), ins,list('Shooting, Savant'),list('Cunning, Combat')))
 ## Construct d_profiles
   d_profiles <- data.table(name = character(),
                           shrt_rng = character(),
@@ -214,4 +214,9 @@ text <- strsplit(pdf_text("resources/Necromunda_Underhive_2017_rules_en.pdf"), s
     
     d_profiles <- rbind(d_profiles, as.data.table(nice_lop))
   }
-
+  
+## Output
+  
+  fwrite(d_fighters,"resources/d_fighters.csv")
+  fwrite(d_profiles,"resources/d_profiles.csv")
+  
