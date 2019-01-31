@@ -169,14 +169,14 @@ text <- strsplit(pdf_text("resources/Necromunda_Underhive_2017_rules_en.pdf"), s
     
     print(page)
     
-    tmp <- unlist(lapply(text[[page]][grep(' - .*\\,.*$',text[[page]])],function(x)
+    tmp <- unlist(lapply(text[[page]][grep(' - .*.*$',text[[page]])],function(x)
       regexpr("\\+[^\\.^\\+]*$", x)[1]
       #gsub("^\\s+|\\s+$", "",substring(x,c(1,25,55),c(24,54,nchar(x))))
       ))
     
     stop <- max(tmp)
     
-    tmp <- unlist(lapply(text[[page]][grep(' - .*\\,.*$',text[[page]])],function(x)
+    tmp <- unlist(lapply(text[[page]][grep(' - .*.*$',text[[page]])],function(x)
       regexpr("( [0-9]+).*$", x, useBytes = F)[1]
       #gsub("^\\s+|\\s+$", "",substring(x,c(1,25,55),c(24,54,nchar(x))))
     ))
@@ -184,7 +184,7 @@ text <- strsplit(pdf_text("resources/Necromunda_Underhive_2017_rules_en.pdf"), s
     start <- min(tmp[tmp != -1])
     
     if(start>40){
-      tmp <- unlist(lapply(text[[page]][grep(' - .*\\,.*$',text[[page]])],function(x)
+      tmp <- unlist(lapply(text[[page]][grep(' - .*.*$',text[[page]])],function(x)
         regexpr("( - ).*$", x, useBytes = F)[1]
         #gsub("^\\s+|\\s+$", "",substring(x,c(1,25,55),c(24,54,nchar(x))))
       ))
@@ -192,7 +192,7 @@ text <- strsplit(pdf_text("resources/Necromunda_Underhive_2017_rules_en.pdf"), s
       start <- min(tmp[tmp != -1])
     }
     
-    wip_page <- lapply(text[[page]][grep(' - .*\\,.*$',text[[page]])],function(x)
+    wip_page <- lapply(text[[page]][grep(' - .*.*$',text[[page]])],function(x)
       gsub("^\\s+|\\s+$", "",substring(x,c(1,start,stop+1),c(start-1,stop,nchar(x)))))
     
     list_of_profiles <- lapply(wip_page, function(x) c(list(x[1]),
